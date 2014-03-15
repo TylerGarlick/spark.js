@@ -2,47 +2,35 @@
 
 var _ = require('lodash');
 
-var Spark = require('../');
+var spark = require('../');
 
-var databaseUrl = 'http://proton.arangohosting.com';
+var databaseUrl = 'http://localhost:8000';
 var databaseName = 'testing';
 
 describe('Spark', function () {
 
-  describe('setup', function () {
-    it('should require a databaseUrl as a parameter', function () {
-      var spark = new Spark(databaseUrl, databaseName);
-      spark.should.be.ok;
-      spark.databaseUrl.should.be.eql(databaseUrl);
-      spark.databaseName.should.be.eql(databaseName);
-
+  describe('initialize', function () {
+    it('should set the configuration parameters', function () {
+      spark.initialize(databaseUrl, databaseName);
+      spark.configuration.database.url.should.be.eql(databaseUrl, 'Database url should be ' + databaseUrl);
+      spark.configuration.database.name.should.be.eql(databaseName, 'Database name should be ' + databaseName);
+    });
+    it('should require the database url', function () {
+      spark.configuration.reset();
       (function () {
-        new Spark('', databaseName);
+        spark.initialize('', databaseName);
       }).should.throw();
-    });
-    it('should require a valid url', function () {
-      (function () {
-        new Spark('hhttp://', databaseName);
-      }).should.throw();
-    });
-    it('should strip off the trailing slash on the databaseUrl', function () {
-      var urlWithTrailingSlash = databaseUrl + '/';
-      var spark = new Spark(urlWithTrailingSlash, databaseName);
-      spark.databaseUrl.should.be.eql(databaseUrl);
-    });
-    it('should set the databaseName', function () {
-      var spark = new Spark(databaseUrl, databaseName);
-      spark.databaseName.should.be.eql(databaseName);
     });
   });
 
+
+
   describe('collections', function () {
-    var spark;
     beforeEach(function () {
-      spark = new Spark(databaseUrl, databaseName, { username: 'root' });
+      spark.initialize(databaseUrl, databaseName, { username: 'root' })
       spark.should.be.ok;
-      spark.databaseUrl.should.be.eql(databaseUrl);
-      spark.databaseName.should.be.eql(databaseName);
+      spark.configuration.database.url.should.be.eql(databaseUrl, 'Database url should be ' + databaseUrl);
+      spark.configuration.database.name.should.be.eql(databaseName, 'Database name should be ' + databaseName);
     });
 
     describe('all', function () {
