@@ -1,0 +1,5 @@
+--require should
+--colors true
+--recursive
+--ui bdd
+--reporter spec
