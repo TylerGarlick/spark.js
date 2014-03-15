@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 var spark = require('../');
-
+var Collection = require('../lib/collection');
 var databaseUrl = 'http://localhost:8000';
 var databaseName = 'testing';
 
@@ -114,6 +114,13 @@ describe('Spark', function () {
             done(err);
           });
       });
+    });
+  });
+
+  describe('collection', function () {
+    it('should have a documents array', function () {
+      var collection = new Collection({name: 'people'});
+      console.log(collection.documents);
     });
   });
 });
