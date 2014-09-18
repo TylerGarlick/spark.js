@@ -4,7 +4,6 @@
   "description": "ArangoDB Client",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony index.js",
     "test": "mocha tests"
   },
   "repository": {
@@ -25,18 +24,15 @@
   "homepage": "https://github.com/TylerGarlick/spark.js",
   "dependencies": {
     "bluebird": "^2.3.2",
-    "es6-module-loader": "^0.8.2",
+    "joi": "^4.6.2",
+    "lite-url": "^0.1.2",
     "lodash": "^2.4.1",
     "moment": "^2.8.2",
     "request": "^2.40.0",
-    "systemjs": "^0.8.2",
-    "traceur": "0.0.60"
+    "wreck": "^5.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "gulp": "^3.8.7",
-    "gulp-clean": "^0.3.1",
-    "gulp-traceur": "^0.13.0",
     "mocha": "^1.18.0"
   }
 }

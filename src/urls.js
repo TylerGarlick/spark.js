@@ -1,5 +1,0 @@
-export var urls = {
-  apis: {
-
-  }
-};
